@@ -1,3 +1,116 @@
+# 1.12 Minecraft Modding in IntelliJ
+
+Video: [Forge MDK Setup in IntelliJ 2017](https://www.youtube.com/watch?v=G2aPT36kf60)git
+
+## One Time Setup
+
+### Copy MDK from minecraftforge
+
+The MDK serves as the starting point for a new mod.
+
+* copy base files from http://files.minecraftforge.0net/
+  * download MDK to serve as starting point files
+  * download Recommended instead of Latest
+  * for easy access, stored in ~/Documents/__DEVELOPMENT__/1.12-DO_NOT_TOUCH-MineCraft_1.12_Base_for_Mods/forge-1.12.2-14.23.4.2705-mdk
+
+NOTE: MDK is saved in this directory as forge-1.12.2-14.23.4.2705-mdk
+
+## For every new mod
+
+### Copy MDK as the starting point of the mod
+
+NOTE: Everywhere you see modname, change to the actual name of the new mod (e.g. mod21)
+
+#### copy forge-1.12.2-14.23.4.2705-mdk
+
+* FROM: ~/Documents/__DEVELOPMENT__/1.12-DO_NOT_TOUCH-MineCraft_1.12_Base_for_Mods/forge-1.12.2-14.23.4.2705-mdk
+* TO:   ~/Documents/__DEVELOPMENT__/nfr/minecraft/1.12/modname
+
+#### open IntelliJ and import
+
+File -> Open... navigate to mod_name dir
+* OFF auto-import
+* ON create dirs for empty content
+* OFF create seperate module per source set
+* ON use default gradle wrapper (recommended)
+* empty - Gradle Home (wasn't empty in the video, so not sure this is correct)
+* 1.8 - Gradle JVM
+* .idea - Project Format
+* Save and Open in New Window
+
+#### configure gradle
+
+Open gradle config
+* View -> Window Tools -> Gradle
+* (may need to refresh to see new modname listed)
+* Rt-click modname -> Open Gradle config
+
+Make changes
+* group = FROM: "com.yourname.modid" TO: "com.nfr.modname"
+* archivesBaseName = FROM: "modid" TO: "modname"
+* sourceCompatibility = targetCompatibility should be '1.8'
+
+NOTE: This either didn't get saved or got reset.  I had to change again when first testing running Minecraft.
+
+#### update gradle
+
+Open terminal in IntelliJ
+* run command: ./gradlew wrapper --gradle-version 3.3
+
+#### import gradle project
+
+There is a popup type window in the lower left.  Once gradle is updated in the previous step, you can click Import Changes in that box.
+
+Watch status of gradle build in the status bar at the bottom of the window.
+
+#### configure setupDecompWorkspace task
+
+* View -> Window Tools -> Gradle (or click Gradle in right side doc)
+* click Refresh icon
+* modname -> Tasks -> forgegradle
+  * Rt Click setupDecompWorkspace -> Create
+  * VM Options:  -Xmx4g -Xms4g  (increases memory for this task)
+  * check Single Instance Only (at top of dialog)
+* Run
+  * Rt Click setupDecompWorkspace -> Run (may take a few minutes to complete; decompiles minecraft)
+* click Refresh icon
+  * expand Dependency dir to see dependencies are filled in
+
+#### create run shortcuts
+
+* View -> Window Tools -> Gradle (or click Gradle in right side doc)
+* modname -> Tasks -> forgegradle
+  * Rt Click genIntelliJRuns -> Run (pretty quick)
+
+### Run Minecraft
+
+* At top right, select Minecraft Client from select list and click Run arrow >
+* First time, may need to set some configurations...
+    * VM Options:  -Xmx4g -Xms4g  (increases memory for this task)
+    * Use classpath of module: select modname
+    * Run
+* Once Minecraft loads, click Mods and go to the end of the list and see Example Mod.
+
+
+By default, the mod will show up as Example Mod.  This can be changed by...
+* edit src/main/resources/mcmod.info
+  * modid - FROM: 'examplemod' TO: 'modname'  (leave as examplemod until more updates are made in src/main/java/com/example/examplemod/ExampleMod.java)
+  * name - FROM: 'Example Mod' TO: 'Mod Name'
+  * description - FROM: 'Example placeholder mod.' TO: "My first mod in IntelliJ."
+  * authorList - FROM: ["ExampleDude"] TO: ["Mom", "Nathan"]
+  * credits: FROM: "The Forge and FML guys, for making this example"  TO: "The Forge and FML devs, for making this example"
+
+
+
+
+NEED TO TEST cloning this from github as a starting point.
+
+
+
+
+
+## REMAINING IS README FROM FORGE
+
 -------------------------------------------
 Source installation information for modders
 -------------------------------------------
