@@ -1,0 +1,16 @@
+[
+{
+  "modid": "examplemod",
+  "name": "My Mod 21",
+  "description": "My first mod in IntelliJ.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Mom", "Nathan"],
+  "credits": "The Forge and FML devs, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
