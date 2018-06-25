@@ -13,8 +13,6 @@ The MDK serves as the starting point for a new mod.
   * download Recommended instead of Latest
   * for easy access, stored in ~/Documents/__DEVELOPMENT__/1.12-DO_NOT_TOUCH-MineCraft_1.12_Base_for_Mods/forge-1.12.2-14.23.4.2705-mdk
 
-NOTE: MDK is saved in this directory as forge-1.12.2-14.23.4.2705-mdk
-
 ## For every new mod
 
 ### Copy MDK as the starting point of the mod
@@ -103,7 +101,7 @@ By default, the mod will show up as Example Mod.  This can be changed by...
 
 
 
-NEED TO TEST cloning this from github as a starting point.
+NEED TO TEST forking this from github as a starting point.
 
 
 
